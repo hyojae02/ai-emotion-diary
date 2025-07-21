@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>감정 분석 일기장</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>감정 분석 일기장</h1>
+  <textarea id="userInput" placeholder="오늘의 감정을 기록해 보세요..."></textarea><br>
+  <button onclick="analyzeEmotion()">감정 분석하기</button>
+
+  <div class="result" id="resultBox" style="display:none;">
+    <h3>분석 결과</h3>
+    <p><strong>입력:</strong> <span id="inputText"></span></p>
+    <p><strong>번역:</strong> <span id="translated"></span></p>
+    <p><strong>감정:</strong> <span id="emotions"></span></p>
+  </div>
+
+  <script>
+    function analyzeEmotion() {
+      const text = document.getElementById("userInput").value;
+      if (!text.trim()) {
+        alert("텍스트를 입력해주세요.");
+        return;
+      }
+
+      axios.post("http://127.0.0.1:5000/analyze", { text })
+        .then(response => {
+          const data = response.data;
+          document.getElementById("inputText").innerText = data.input;
+          document.getElementById("translated").innerText = data.translation;
+          document.getElementById("emotions").innerText = data.emotions.join(", ");
+          document.getElementById("resultBox").style.display = "block";
+        })
+        .catch(error => {
+          console.error(error);
+          alert("감정 분석 중 오류가 발생했습니다.");
+        });
+    }
+  </script>
+</body>
+</html>
