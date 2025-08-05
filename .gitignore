@@ -1,0 +1,37 @@
+# 가상환경
+venv/
+
+# Python 컴파일 파일
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# 빌드/배포 파일
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# 라이브러리 캐시
+*.lib
+*.dll
+*.so
+
+# SQLite DB
+*.db
+*.sqlite3
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# VSCode 설정
+.vscode/
+
+# 로그
+*.log
+
+# 환경 설정 파일
+.env

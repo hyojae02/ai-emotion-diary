@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>감정 분석 일기장</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>감정 분석 일기장</h1>
+  <textarea id="userInput" placeholder="오늘의 감정을 기록해 보세요..."></textarea><br>
+  <button onclick="analyzeEmotion()">감정 분석하기</button>
+
+  <div class="result" id="resultBox" style="display:none;">
+    <h3>분석 결과</h3>
+    <p><strong>입력:</strong> <span id="inputText"></span></p>
+    <p><strong>번역:</strong> <span id="translated"></span></p>
+    <p><strong>감정:</strong> <span id="emotions"></span></p>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
